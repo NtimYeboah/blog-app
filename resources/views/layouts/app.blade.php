@@ -11,70 +11,35 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('css/font.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('css/icon.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="{{asset('css/landing.css')}}" type="text/css"/>
+
+    <!--[if lt IE 9]>
+    <script src="{{asset('js/ie/html5shiv.js')}}"></script>
+    <script src="{{asset('js/ie/respond.min.js')}}"></script>
+    <script src="{{asset('js/ie/excanvas.js')}}"></script>
+    <![endif]-->
+    <script type="text/javascript">
+        window.ntimyeboah = window.ntimyeboah || {}
+    </script>
 </head>
 <body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+    <!-- Include the main page content -->
+    @yield('content_wrapper')
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        @yield('content')
-    </div>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <!-- Bootstrap -->
+    <script src="{{asset('js/bootstrap.js')}}"></script>
+    <!-- App -->
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/app.plugin.js')}}"></script>
+    <script src="{{asset('js/landing.js')}}"></script>
+    <!-- Include any additional scripts specific to the page being viewed -->
+    @yield('extra_scripts')
+    @stack('additional_scripts')
 </body>
 </html>
