@@ -1,45 +1,53 @@
-<!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.master')
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+@section('content_wrapper')
+<section class="vbox">
+    <header class="bg-white-only navbar-fixed-top header header-md navbar navbar-fixed-top-xs box-shadow">
+      <div class="navbar-header">
+        <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen,open" data-target="#nav,html">
+          <i class="fa fa-bars"></i>
+        </a>
+        <a href="/" class="navbar-brand">
+          <span class="hidden-nav-xs">NTIM YEBOAH</span>
+        </a>
+        <a class="btn btn-link visible-xs" data-toggle="dropdown" data-target=".user">
+          <i class="fa fa-cog"></i>
+        </a>
+      </div>
+      <ul class="nav navbar-nav  navbar-right hidden-xs" style="margin-right: 20%">
+        <li>
+          <a href="#">
+            <span class="hidden-nav-xs nav-item-text">Posts</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="hidden-nav-xs nav-item-text">Slides</span>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <span class="hidden-nav-xs nav-item-text">About</span>
+          </a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user">
+      </ul>      
+    </header>
+   <section class="vbox">
+        <section>
+            <section class="hbox stretch">
+                <section id="content">
+                    <section class="hbox stretch">
+                        <section class="vbox">
+                            @yield('content')
+                        </section>
+                    </section>
+                    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open"
+                       data-target="#nav,html"></a>
+                </section>
+            </section>
+        </section>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" type="text/css"/>
-    <link rel="stylesheet" href="{{asset('css/font.css')}}" type="text/css"/>
-    <link rel="stylesheet" href="{{asset('css/icon.css')}}" type="text/css"/>
-    <link rel="stylesheet" href="{{asset('css/landing.css')}}" type="text/css"/>
-
-    <!--[if lt IE 9]>
-    <script src="{{asset('js/ie/html5shiv.js')}}"></script>
-    <script src="{{asset('js/ie/respond.min.js')}}"></script>
-    <script src="{{asset('js/ie/excanvas.js')}}"></script>
-    <![endif]-->
-    <script type="text/javascript">
-        window.ntimyeboah = window.ntimyeboah || {}
-    </script>
-</head>
-<body>
-    <!-- Include the main page content -->
-    @yield('content_wrapper')
-
-    <script src="{{asset('js/jquery.min.js')}}"></script>
-    <!-- Bootstrap -->
-    <script src="{{asset('js/bootstrap.js')}}"></script>
-    <!-- App -->
-    <script src="{{asset('js/app.js')}}"></script>
-    <script src="{{asset('js/app.plugin.js')}}"></script>
-    <script src="{{asset('js/landing.js')}}"></script>
-    <!-- Include any additional scripts specific to the page being viewed -->
-    @yield('extra_scripts')
-    @stack('additional_scripts')
-</body>
-</html>
+    </section> 
+@endsection
