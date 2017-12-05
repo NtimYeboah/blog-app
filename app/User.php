@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'first_name', 'last_name', 'email', 'password'
     ];
 
     /**
@@ -26,4 +27,29 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Cast field values
+     *
+     * @var array
+     */
+    protected $casts = [
+        'is_admin' => 'boolean',
+        'is_app_owner' => 'boolean'
+    ];
+
+    /**
+     * Hash password
+     *
+     * @param string $password
+     * @return void
+     */
+    public function setPasswordAttribute($password)
+    {
+        $this->attribute['password'] = $password;
+
+        if (Hash::needsRehash($password)) {
+            $this->attribute['password'] = Hash::make($password);
+        }
+    }
 }
