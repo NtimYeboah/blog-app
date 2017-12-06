@@ -82,11 +82,20 @@ class RegisterAdminCommand extends Command
      * @param array $admin
      * @return void
      */
-    private function display(array $admin)
+    private function display(User $admin) : void
     {
         $headers = ['First Name', 'Last Name', 'Email', 'Admin', 'App Owner'];
 
-        $this->table($headers, $admin);
+        $fields = [
+            'first_name' => $admin->first_name,
+            'last_name' => $admin->last_name,
+            'email' => $admin->email,
+            'admin' => $admin->isAdmin(),
+            'app_owner' => $admin->isAppOwner()
+        ];
+
+        $this->info('Created admin details');
+        $this->table($headers, [$fields]);
     }
 
     /**
@@ -95,15 +104,18 @@ class RegisterAdminCommand extends Command
      * @param array $details
      * @return array
      */
-    private function createAdmin(array $details) : array
+    private function createAdmin(array $details) : User
     {
+        $user = new User($details);
+
         if (! $this->appOwnerExists()) {
-            $details['is_app_owner'] = 1;
-            $details['is_admin'] = 1;
+            $user->is_app_owner = 1;
+            $user->is_admin = 1;
         }
 
-        return $details;
-        //return User::create($details);
+        $user->save();
+
+        return $user;
     }
 
     /**

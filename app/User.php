@@ -44,12 +44,32 @@ class User extends Authenticatable
      * @param string $password
      * @return void
      */
-    public function setPasswordAttribute($password)
+    public function setPasswordAttribute($password) : void
     {
-        $this->attribute['password'] = $password;
+        $this->attributes['password'] = $password;
 
         if (Hash::needsRehash($password)) {
-            $this->attribute['password'] = Hash::make($password);
+            $this->attributes['password'] = Hash::make($password);
         }
+    }
+
+    /**
+     * Checks if user is admin
+     *
+     * @return boolean
+     */
+    public function isAdmin() : bool
+    {
+        return (bool) $this->is_admin;
+    }
+
+    /**
+     * Checks if user is app owner
+     *
+     * @return boolean
+     */
+    public function isAppOwner() : bool
+    {
+        return (bool) $this->is_app_owner;
     }
 }
