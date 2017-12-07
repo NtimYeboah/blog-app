@@ -13,7 +13,7 @@ class UserTest extends TestCase
     public function testIsAdmin()
     {
         $user = factory(User::class)->create([
-            'is_admin' => 1
+            'is_admin' => 1,
         ]);
 
         $this->assertTrue($user->isAdmin());
@@ -23,7 +23,7 @@ class UserTest extends TestCase
     public function testIsAppOwner()
     {
         $user = factory(User::class)->create([
-            'is_app_owner' => 1
+            'is_app_owner' => 1,
         ]);
 
         $this->assertTrue($user->isAppOwner());
@@ -45,12 +45,12 @@ class UserTest extends TestCase
     {
         factory(User::class)->create([
             'is_app_owner' => 1,
-            'is_admin' => 1
+            'is_admin' => 1,
         ]);
         $details = factory(User::class)->make([
-            'is_admin' => 1
+            'is_admin' => 1,
         ])->toArray();
-        
+
         $user = app(User::class)->create($details);
 
         $this->assertInstanceOf(User::class, $user);
@@ -62,7 +62,7 @@ class UserTest extends TestCase
     {
         factory(User::class)->create([
             'is_app_owner' => 1,
-            'is_admin' => 1
+            'is_admin' => 1,
         ]);
 
         $user = app(User::class)->appOwnerExists();
