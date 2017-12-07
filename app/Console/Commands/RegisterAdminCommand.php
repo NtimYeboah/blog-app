@@ -22,13 +22,22 @@ class RegisterAdminCommand extends Command
     protected $description = 'Register administrator';
 
     /**
+     * User model
+     *
+     * @var object
+     */
+    private $user;
+
+    /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(User $user)
     {
         parent::__construct();
+
+        $this->user = $user;
     }
 
     /**
@@ -40,7 +49,7 @@ class RegisterAdminCommand extends Command
     {
         $details = $this->getDetails();
 
-        $admin = $this->createAdmin($details);
+        $admin = $this->user->create($details);
 
         $this->display($admin);
     }
@@ -96,36 +105,6 @@ class RegisterAdminCommand extends Command
 
         $this->info('Created admin details');
         $this->table($headers, [$fields]);
-    }
-
-    /**
-     * Create admin
-     *
-     * @param array $details
-     * @return array
-     */
-    private function createAdmin(array $details) : User
-    {
-        $user = new User($details);
-
-        if (! $this->appOwnerExists()) {
-            $user->is_app_owner = 1;
-            $user->is_admin = 1;
-        }
-
-        $user->save();
-
-        return $user;
-    }
-
-    /**
-     * Checks if administration exists
-     *
-     * @return array|null
-     */
-    private function appOwnerExists()
-    {
-        return User::where('is_app_owner', 1)->first();
     }
 
     /**

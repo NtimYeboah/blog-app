@@ -72,4 +72,34 @@ class User extends Authenticatable
     {
         return (bool) $this->is_app_owner;
     }
+
+    /**
+     * Create admin
+     *
+     * @param array $details
+     * @return array
+     */
+    public function create(array $details) : User
+    {
+        $user = new self($details);
+
+        if (! $this->appOwnerExists()) {
+            $user->is_app_owner = 1;
+        }
+
+        $user->is_admin = 1;
+        $user->save();
+
+        return $user;
+    }
+
+    /**
+     * Checks if administration exists
+     *
+     * @return object|null
+     */
+    public function appOwnerExists()
+    {
+        return self::where('is_app_owner', 1)->first();
+    }
 }
