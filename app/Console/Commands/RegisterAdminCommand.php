@@ -46,7 +46,7 @@ class RegisterAdminCommand extends Command
     }
 
     /**
-     * Ask for admin details
+     * Ask for admin details.
      *
      * @return array
      */
@@ -60,7 +60,6 @@ class RegisterAdminCommand extends Command
 
         while (! ($this->isRequiredLength($details['password'])
         && $this->isMatch($details['password'], $details['confirm_password']))) {
-
             if (! $this->isRequiredLength($details['password'])) {
                 $this->error('Password must be more that six characters');
             }
@@ -77,7 +76,7 @@ class RegisterAdminCommand extends Command
     }
 
     /**
-     * Display created admin
+     * Display created admin.
      *
      * @param array $admin
      * @return void
@@ -91,7 +90,7 @@ class RegisterAdminCommand extends Command
             'last_name' => $admin->last_name,
             'email' => $admin->email,
             'admin' => $admin->isAdmin(),
-            'app_owner' => $admin->isAppOwner()
+            'app_owner' => $admin->isAppOwner(),
         ];
 
         $this->info('Created admin details');
@@ -99,7 +98,7 @@ class RegisterAdminCommand extends Command
     }
 
     /**
-     * Create admin
+     * Create admin.
      *
      * @param array $details
      * @return array
@@ -119,7 +118,7 @@ class RegisterAdminCommand extends Command
     }
 
     /**
-     * Checks if administration exists
+     * Checks if administration exists.
      *
      * @return array|null
      */
@@ -129,7 +128,7 @@ class RegisterAdminCommand extends Command
     }
 
     /**
-     * Check if password and confirm password matches
+     * Check if password and confirm password matches.
      *
      * @param string $password
      * @param string $confirmPassword
@@ -141,7 +140,7 @@ class RegisterAdminCommand extends Command
     }
 
     /**
-     * Checks if password is longer than six characters
+     * Checks if password is longer than six characters.
      *
      * @param string $password
      * @return bool
