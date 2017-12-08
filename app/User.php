@@ -2,9 +2,9 @@
 
 namespace App;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password'
+        'first_name', 'last_name', 'email', 'password',
     ];
 
     /**
@@ -29,17 +29,17 @@ class User extends Authenticatable
     ];
 
     /**
-     * Cast field values
+     * Cast field values.
      *
      * @var array
      */
     protected $casts = [
         'is_admin' => 'boolean',
-        'is_app_owner' => 'boolean'
+        'is_app_owner' => 'boolean',
     ];
 
     /**
-     * Hash password
+     * Hash password.
      *
      * @param string $password
      * @return void
@@ -54,9 +54,9 @@ class User extends Authenticatable
     }
 
     /**
-     * Checks if user is admin
+     * Checks if user is admin.
      *
-     * @return boolean
+     * @return bool
      */
     public function isAdmin() : bool
     {
@@ -64,9 +64,9 @@ class User extends Authenticatable
     }
 
     /**
-     * Checks if user is app owner
+     * Checks if user is app owner.
      *
-     * @return boolean
+     * @return bool
      */
     public function isAppOwner() : bool
     {
@@ -74,12 +74,12 @@ class User extends Authenticatable
     }
 
     /**
-     * Create admin
+     * Create admin.
      *
      * @param array $details
      * @return array
      */
-    public function create(array $details) : User
+    public function create(array $details) : self
     {
         $user = new self($details);
 
@@ -94,7 +94,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Checks if administration exists
+     * Checks if administration exists.
      *
      * @return object|null
      */

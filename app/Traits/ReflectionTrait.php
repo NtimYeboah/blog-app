@@ -5,7 +5,7 @@ namespace App\Traits;
 trait ReflectionTrait
 {
     /**
-     * Invoke private method
+     * Invoke private method.
      *
      * @param string $object
      * @param string $method
@@ -22,7 +22,7 @@ trait ReflectionTrait
     }
 
     /**
-     * Invoke private properties
+     * Invoke private properties.
      *
      * @param string $object
      * @param string $field

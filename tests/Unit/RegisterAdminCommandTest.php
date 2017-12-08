@@ -17,7 +17,7 @@ class RegisterAdminCommandTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        
+
         $user = factory(User::class)->create();
 
         $this->registerAdminCommand = new RegisterAdminCommand($user);
@@ -39,7 +39,7 @@ class RegisterAdminCommandTest extends TestCase
     public function testPasswordOfNotRequiredLength()
     {
         $password = 'pass';
-        
+
         $notRequiredLength = $this->invokeMethod(
             $this->registerAdminCommand,
             'isRequiredLength',
