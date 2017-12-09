@@ -16,6 +16,10 @@ Route::get('/', function () {
     return view('posts.index');
 });
 
+Route::get('/admin/login', function () {
+    return view('admin.login');
+});
+
 Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
     Route::get('/', ['as' => 'index', 'uses' => 'PostsController@index']);
 });

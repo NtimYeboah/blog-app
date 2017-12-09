@@ -79,4 +79,17 @@ class UserTest extends TestCase
 
         $this->assertNull($user);
     }
+
+    public function testCanGetFullName()
+    {
+        factory(User::class)->create([
+            'first_name' => 'Adwoa',
+            'last_name' => 'Korkor'
+        ]);
+
+        $user = User::first();
+
+        $this->assertInstanceOf(User::class, $user);
+        $this->assertEquals($user->getFullName(), 'Adwoa Korkor');
+    }
 }

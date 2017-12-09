@@ -74,6 +74,16 @@ class User extends Authenticatable
     }
 
     /**
+     * Get user's full name
+     *
+     * @return string
+     */
+    public function getFullName() : string
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
+
+    /**
      * Create admin
      *
      * @param array $details

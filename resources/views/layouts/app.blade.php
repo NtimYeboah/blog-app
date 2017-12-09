@@ -14,12 +14,41 @@
           <i class="fa fa-cog"></i>
         </a>
       </div>
-      <ul class="nav navbar-nav  navbar-right hidden-xs" style="margin-right: 20%">
+      <ul class="nav navbar-nav  navbar-right hidden-xs">
+        @auth
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+              {{ Auth::user()->getFullName() }} <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu animated fadeInRight">            
+              <li>
+                <span class="arrow top"></span>
+                <a href="{{ route('logout') }}"
+                  onclick="event.preventDefault();
+                  document.getElementById('logout-form').submit();">
+                  Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+              </li>                          
+            </ul>
+          </li>
+          @endauth
+      </ul>
+      <ul class="nav navbar-nav  navbar-right hidden-xs" style="margin-right:{{ Auth::user() ? '0' : '10%'}}">
         <li>
           <a href="#">
             <span class="hidden-nav-xs nav-item-text">Posts</span>
           </a>
         </li>
+        @auth
+        <li>
+          <a href="#">
+            <span class="hidden-nav-xs nav-item-text">Drafts</span>
+          </a>
+        </li>
+        @endauth
         <li>
           <a href="#">
             <span class="hidden-nav-xs nav-item-text">Slides</span>
@@ -30,9 +59,7 @@
             <span class="hidden-nav-xs nav-item-text">About</span>
           </a>
         </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right m-n hidden-xs nav-user user">
-      </ul>      
+      </ul>    
     </header>
    <section class="vbox">
         <section>
