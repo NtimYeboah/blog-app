@@ -19,7 +19,7 @@
 <body>
     <section id="content" class="m-t-lg wrapper-md animated fadeInUp">    
         <div class="container aside-xl">
-            <a class="navbar-brand block">Ntim Yeboah</a>
+            <a class="navbar-brand block">NTIM YEBOAH</a>
             <section class="m-b-lg">
                 <form method="POST" action="{{ route('login') }}">
                 {{ csrf_field() }}
