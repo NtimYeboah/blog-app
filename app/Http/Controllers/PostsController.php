@@ -2,18 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Posts;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the posts.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        return view('posts.index');
+        $posts = Posts::paginate();
+        
+        return view('posts.index', compact('posts'));
     }
 
     /**
