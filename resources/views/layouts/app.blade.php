@@ -20,7 +20,22 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
               {{ Auth::user()->getFullName() }} <b class="caret"></b>
             </a>
-            <ul class="dropdown-menu animated fadeInRight">            
+            <ul class="dropdown-menu animated fadeInRight">
+              @if (! Route::is('drafts.index'))  
+              <li>
+                <a href="{{ route('drafts.index') }}">
+                  <span class="hidden-nav-xs">All drafts</span>
+                </a>
+              </li>
+              @endif
+              @if (! Route::is('drafts.create'))
+              <li>
+                <a href="{{ route('drafts.create') }}">
+                  <span class="hidden-nav-xs">Create drafts</span>
+                </a>
+              </li>
+              @endif
+              <li class="divider"></li>         
               <li>
                 <span class="arrow top"></span>
                 <a href="{{ route('logout') }}"
@@ -38,17 +53,10 @@
       </ul>
       <ul class="nav navbar-nav  navbar-right hidden-xs" style="margin-right:{{ Auth::user() ? '0' : '10%'}}">
         <li>
-          <a href="#">
+          <a href="{{route('posts.index')}}">
             <span class="hidden-nav-xs nav-item-text">Posts</span>
           </a>
         </li>
-        @auth
-        <li>
-          <a href="#">
-            <span class="hidden-nav-xs nav-item-text">Drafts</span>
-          </a>
-        </li>
-        @endauth
         <li>
           <a href="#">
             <span class="hidden-nav-xs nav-item-text">Slides</span>
@@ -61,20 +69,15 @@
         </li>
       </ul>    
     </header>
-   <section class="vbox">
-        <section>
-            <section class="hbox stretch">
-                <section id="content">
-                    <section class="hbox stretch">
-                        <section class="vbox">
-                            @yield('content')
-                        </section>
-                    </section>
-                    <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open"
-                       data-target="#nav,html"></a>
-                </section>
-            </section>
-        </section>
-
-    </section> 
+      <section class="hbox stretch">
+          <section id="content">
+              <section class="hbox stretch">
+                  <section class="vbox">
+                      @yield('content')
+                  </section>
+              </section>
+              <a href="#" class="hide nav-off-screen-block" data-toggle="class:nav-off-screen,open"
+                  data-target="#nav,html"></a>
+          </section>
+      </section>
 @endsection
