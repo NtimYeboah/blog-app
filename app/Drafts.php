@@ -11,13 +11,23 @@ class Drafts extends Model
     /**
      * Casts to different types.
      *
-     * @return void
+     * @return array
      */
-    public function casts()
+    public function casts() : array
     {
         return [
             'is_published' => 'boolean'
         ];
+    }
+
+    /**
+     * Post relationship.
+     *
+     * @return void
+     */
+    public function post()
+    {
+        return $this->hasOne(Post::class);
     }
 
     /**
@@ -29,6 +39,8 @@ class Drafts extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+
 
     /**
      * Checks if draft is published.
