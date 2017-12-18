@@ -16,7 +16,7 @@ class Drafts extends Model
     public function casts() : array
     {
         return [
-            'is_published' => 'boolean'
+            'is_published' => 'boolean',
         ];
     }
 
