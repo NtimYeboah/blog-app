@@ -3,7 +3,6 @@
 namespace Tests\Unit;
 
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SlideTest extends TestCase
 {
@@ -15,7 +14,7 @@ class SlideTest extends TestCase
     public function test_slide_is_published()
     {
         $slide = factory(Slide::class)->create([
-            'is_published' => 1
+            'is_published' => 1,
         ]);
 
         $this->assertTrue($slide->isPublished());
@@ -25,7 +24,7 @@ class SlideTest extends TestCase
     {
         $user = factory(User::class)->create();
         $slide = factory(Slide::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $this->assertEquals($user->id, $slide->user->id);
