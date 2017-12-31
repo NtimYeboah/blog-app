@@ -112,4 +112,14 @@ class User extends Authenticatable
     {
         return self::where('is_app_owner', 1)->first();
     }
+
+    /**
+     * Slides relation
+     *
+     * @return void
+     */
+    public function slides()
+    {
+        return $this->hasMany(Slide::class);
+    }
 }
