@@ -14,7 +14,7 @@ class Posts extends Model
     }
 
     /**
-     * Add a new post
+     * Add a new post.
      *
      * @param Draft $draft
      * @return self
@@ -23,7 +23,7 @@ class Posts extends Model
     {
         return self::create([
             'draft_id' => $draft->id,
-            'slug' => $draft->title
+            'slug' => $draft->title,
         ]);
     }
 }
