@@ -12,14 +12,18 @@
 */
 Auth::routes();
 
-Route::get('/', function () {
-    return view('posts.index');
-});
+Route::get('/', ['uses' => 'PostsController@index']);
 
-Route::get('/admin/login', function () {
-    return view('admin.login');
+Route::get('/auth/login', function () {
+    return view('auth.login');
 });
 
 Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
-    Route::get('/', ['as' => 'index', 'uses' => 'PostsController@index']);
+    Route::get('', ['as' => 'index', 'uses' => 'PostsController@index']);
+});
+
+Route::group(['prefix' => 'drafts', 'as' => 'drafts.', 'middleware' => ['auth']], function () {
+    Route::get('', ['as' => 'index', 'uses' => 'DraftsController@index']);
+    Route::get('create', ['as' => 'create', 'uses' => 'DraftsController@create']);
+    Route::post('store', ['as' => 'store', 'uses' => 'DraftsController@store']);
 });

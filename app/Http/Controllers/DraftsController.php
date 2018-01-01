@@ -2,31 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Post;
+use App\Draft;
 use Illuminate\Http\Request;
 
-class PostsController extends Controller
+class DraftsController extends Controller
 {
     /**
-     * Display a listing of the posts.
+     * Display a listing of drafts.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $posts = Post::paginate();
+        $drafts = Draft::with('user')->paginate();
 
-        return view('posts.index', compact('posts'));
+        return view('drafts.index', compact('drafts'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new draft.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        $draft = app(Draft::class);
+
+        return view('drafts.create', compact('draft'));
     }
 
     /**
