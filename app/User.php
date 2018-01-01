@@ -80,7 +80,7 @@ class User extends Authenticatable
      */
     public function getFullName() : string
     {
-        return $this->first_name . ' ' . $this->last_name;
+        return $this->first_name.' '.$this->last_name;
     }
 
     /**
@@ -114,7 +114,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Slides relation
+     * Slides relation.
      *
      * @return void
      */
