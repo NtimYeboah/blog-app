@@ -10,8 +10,8 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 class PostTest extends TestCase
 {
     use RefreshDatabase;
-    
-    public function test_can_add_post()
+
+    public function test_can_publish_post()
     {
         $draft = factory(Draft::class)->create();
 
