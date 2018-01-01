@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class slides extends Model
+class Slide extends Model
 {
     public $fillable = ['url', 'user_id', 'description'];
-
+    
     public $casts = [
         'is_published' => 'boolean'
     ];

@@ -15,10 +15,10 @@ class CreateSlidesTable extends Migration
     {
         Schema::create('slides', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsigedBigInterger('user_id')->index();
+            $table->unsignedBigInteger('user_id')->index();
             $table->string('url')->unique();
             $table->longText('description')->nullable();
-            $table->unsigedTinyInteger('is_published')->default(0);
+            $table->unsignedTinyInteger('is_published')->default(0);
             $table->timestamps();
         });
     }

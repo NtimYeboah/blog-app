@@ -2,11 +2,15 @@
 
 namespace Tests\Unit;
 
+use App\User;
+use App\Slide;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class SlideTest extends TestCase
 {
+    use RefreshDatabase;
+    
     public function setUp()
     {
         parent::setUp();
