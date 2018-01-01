@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Slide extends Model
 {
     public $fillable = ['url', 'user_id', 'description'];
-    
+
     public $casts = [
-        'is_published' => 'boolean'
+        'is_published' => 'boolean',
     ];
 
     /**
-     * User relationship
+     * User relationship.
      */
     public function user()
     {
@@ -21,9 +21,9 @@ class Slide extends Model
     }
 
     /**
-     * Checks if a slide is published
+     * Checks if a slide is published.
      *
-     * @return boolean
+     * @return bool
      */
     public function isPublished()
     {

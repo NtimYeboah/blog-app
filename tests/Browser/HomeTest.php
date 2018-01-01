@@ -4,12 +4,11 @@ namespace Tests\Browser;
 
 use Tests\DuskTestCase;
 use Laravel\Dusk\Browser;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class HomeTest extends DuskTestCase
 {
     /**
-     * Visit homepage
+     * Visit homepage.
      *
      * @return void
      */
