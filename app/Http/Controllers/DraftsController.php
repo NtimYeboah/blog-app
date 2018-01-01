@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Drafts;
+use App\Draft;
 use Illuminate\Http\Request;
 
 class DraftsController extends Controller
@@ -14,7 +14,7 @@ class DraftsController extends Controller
      */
     public function index()
     {
-        $drafts = Drafts::with('user')->paginate();
+        $drafts = Draft::with('user')->paginate();
 
         return view('drafts.index', compact('drafts'));
     }
@@ -26,7 +26,7 @@ class DraftsController extends Controller
      */
     public function create()
     {
-        $draft = app(Drafts::class);
+        $draft = app(Draft::class);
         
         return view('drafts.create', compact('draft'));
     }
