@@ -35,7 +35,7 @@ class UserTest extends TestCase
         $details = factory(User::class)->make()->toArray();
 
         $user = app(User::class)->create($details);
-
+        
         $this->assertInstanceOf(User::class, $user);
         $this->assertEquals(true, $user->isAppOwner());
         $this->assertEquals(true, $user->isAdmin());
