@@ -2,7 +2,8 @@
 
 namespace Tests\Unit;
 
-use App\Posts;
+use App\Post;
+use App\Draft;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -12,11 +13,11 @@ class PostTest extends TestCase
     
     public function test_can_publish_post()
     {
-        $draft = factory(Drafts::class)->create();
+        $draft = factory(Draft::class)->create();
 
-        $post = app(Posts::class)->add($draft);
+        $post = app(Post::class)->add($draft);
 
-        $this->assertInstanceOf(Posts::class, $post);
+        $this->assertInstanceOf(Post::class, $post);
         $this->assertEquals(str_slug($draft->title), $post->slug);
         $this->assertEquals($draft->id, $post->draft_id);
     }

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Drafts extends Model
+class Draft extends Model
 {
     public $fillable = ['title', 'body', 'user_id', 'is_published'];
 

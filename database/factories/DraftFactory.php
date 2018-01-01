@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\Drafts::class, function (Faker $faker) {
+$factory->define(App\Draft::class, function (Faker $faker) {
     $user = factory(App\User::class)->create();
 
     return [
@@ -12,7 +12,7 @@ $factory->define(App\Drafts::class, function (Faker $faker) {
     ];
 });
 
-$factory->defineAs(App\Drafts::class, 'published', function (Faker $faker) {
+$factory->defineAs(App\Draft::class, 'published', function (Faker $faker) {
     return [
         'is_published' => true
     ];

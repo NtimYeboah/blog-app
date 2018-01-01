@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Posts extends Model
+class Post extends Model
 {
-    public $fillables = ['draft_id', 'slug'];
+    public $fillable = ['draft_id', 'slug'];
 
     public function draft()
     {
@@ -23,7 +23,7 @@ class Posts extends Model
     {
         return self::create([
             'draft_id' => $draft->id,
-            'slug' => $draft->title
+            'slug' => str_slug($draft->title)
         ]);
     }
 }

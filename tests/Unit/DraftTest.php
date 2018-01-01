@@ -2,8 +2,8 @@
 
 namespace Tests\Unit;
 
+use App\Draft;
 use Tests\TestCase;
-use App\Drafts;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class DraftTest extends TestCase
@@ -12,7 +12,7 @@ class DraftTest extends TestCase
     
     public function test_draft_is_published()
     {
-        $draft = factory(Drafts::class)->create([
+        $draft = factory(Draft::class)->create([
             'is_published' => 1
         ]);
 

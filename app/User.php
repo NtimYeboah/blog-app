@@ -108,7 +108,7 @@ class User extends Authenticatable
      *
      * @return object|null
      */
-    public function appOwnerExists() : self
+    public function appOwnerExists()
     {
         return self::where('is_app_owner', 1)->first();
     }
