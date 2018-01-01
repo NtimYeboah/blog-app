@@ -16,7 +16,7 @@ class Draft extends Model
     public function casts() : array
     {
         return [
-            'is_published' => 'boolean'
+            'is_published' => 'boolean',
         ];
     }
 
@@ -39,8 +39,6 @@ class Draft extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-
 
     /**
      * Checks if draft is published.

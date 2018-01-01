@@ -7,6 +7,6 @@ $factory->define(App\Posts::class, function (Faker $faker) {
 
     return [
         'draft_id' => $draft->id,
-        'slug' => str_slug($draft->title)
+        'slug' => str_slug($draft->title),
     ];
 });
