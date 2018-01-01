@@ -8,12 +8,12 @@ $factory->define(App\Slide::class, function (Faker $faker) {
     return [
         'url' => $faker->url,
         'user_id' => $user->id,
-        'description' => $faker->paragraph
+        'description' => $faker->paragraph,
     ];
 });
 
 $factory->defineAs(App\Slide::class, 'published', function () {
     return [
-        'is_published' => 1
+        'is_published' => 1,
     ];
 });
