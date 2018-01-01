@@ -84,7 +84,7 @@ class UserTest extends TestCase
     {
         factory(User::class)->create([
             'first_name' => 'Adwoa',
-            'last_name' => 'Korkor'
+            'last_name' => 'Korkor',
         ]);
 
         $user = User::first();
