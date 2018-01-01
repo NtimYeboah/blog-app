@@ -27,7 +27,7 @@ class DraftsController extends Controller
     public function create()
     {
         $draft = app(Drafts::class);
-        
+
         return view('drafts.create', compact('draft'));
     }
 

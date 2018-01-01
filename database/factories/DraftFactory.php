@@ -8,12 +8,12 @@ $factory->define(App\Draft::class, function (Faker $faker) {
     return [
         'title' => $faker->text,
         'body' => $faker->paragraph(4),
-        'user_id' => $user->id
+        'user_id' => $user->id,
     ];
 });
 
 $factory->defineAs(App\Draft::class, 'published', function (Faker $faker) {
     return [
-        'is_published' => true
+        'is_published' => true,
     ];
 });
