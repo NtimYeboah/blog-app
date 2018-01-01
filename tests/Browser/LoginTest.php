@@ -22,7 +22,7 @@ class LoginTest extends DuskTestCase
             'first_name' => 'Riyad',
             'last_name' => 'Mahrez',
             'email' => 'riyad.mahrez@mail.com',
-            'password' => 'secret'
+            'password' => 'secret',
         ]);
 
         $this->browse(function (Browser $browser) use ($user) {
