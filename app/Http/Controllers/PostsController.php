@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\Draft;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -14,19 +15,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate();
-
+        $posts = Draft::published()->with('user')->paginate();
+        
         return view('posts.index', compact('posts'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -35,43 +26,36 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Draft $draft)
     {
-        //
+        try {
+            $post = app(Post::class)->add($draft);
+            $post = $post->draft;
+        } catch (\Exception $e) {
+            logger()->error('An error occurred whiles publishing a draft', [
+                'file' => $e->getFile(),
+                'code' => $e->getCode(),
+                'message' => $e->getMessage()
+            ]);
+
+            return back()->withError('Could\'t publish draft. Please try again');
+        }
+
+        // Flash message
+        return view('posts.show', compact('post'));
     }
 
     /**
-     * Display the specified resource.
+     * Show a single post
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Post $post
+     * @return void
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        //
-    }
+        $post = $post->draft;
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return view('posts.show', compact('post'));
     }
 
     /**

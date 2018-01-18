@@ -21,6 +21,8 @@ class Post extends Model
      */
     public function add(Draft $draft) : self
     {
+        $draft->publish();
+
         return self::create([
             'draft_id' => $draft->id,
             'slug' => str_slug($draft->title),

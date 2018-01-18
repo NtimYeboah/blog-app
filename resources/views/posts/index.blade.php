@@ -12,36 +12,23 @@
         </div>
         @endauth
         @if (count($posts))
-        <!-- <div class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1" style="margin-top:2%">
+        @foreach($posts as $post)
+        <div class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1" style="margin-top:2%">
             <section class="panel panel-default">
                 <div class="panel-body">
                     <div>
                         <h3>
-                            How to setup Laravel application on Digital oceans virtual machines
+                        <a href="{{ route('posts.show', ['post' => $post]) }}">{{ $post->title}}</a>
                         </h3>
                     </div> 
 
                     <div>
-                        HTML5 WYSIWYG (What You See Is What You Get) editors are always high in demand. But there are now so many of them around that it's hard to find the best ones. In this post I'm going to present 10 of the very best jQuery and HTML5 WYSIWYG plugins, saving you time finding the plugin that fits your ...
+                        {{ $post->body }}
                     </div>                      
                 </div>
-                <div class="panel-footer">
-                <article class="chat-item" id="chat-form">
-                <span class="text-muted m-l-sm">
-                  <i class="fa fa-clock-o"></i>
-                  Just now
-              </span>
-              
-                  <div class="pull-right">
-                  <a href="#" class="btn btn-primary btn-rounded"><i class="fa fa-pencil"></i></a>
-                  <a href="#" class="btn btn-success btn-rounded"><i class="fa fa-save"></i></a>
-                  </div>
-                  
-                </article>
-                    
-                </div>
             </section>
-        </div> -->
+        </div>
+        @endforeach
         @else
         <div class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1" style="margin-top:2%">
             <section class="panel panel-default hidden-print">

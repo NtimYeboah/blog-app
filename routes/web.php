@@ -20,10 +20,13 @@ Route::get('/auth/login', function () {
 
 Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
     Route::get('', ['as' => 'index', 'uses' => 'PostsController@index']);
+    Route::post('{draft}', ['as' => 'store', 'uses' => 'PostsController@store']);
+    Route::get('{post}', ['as' => 'show', 'uses' => 'PostsController@show']);
 });
 
 Route::group(['prefix' => 'drafts', 'as' => 'drafts.', 'middleware' => ['auth']], function () {
     Route::get('', ['as' => 'index', 'uses' => 'DraftsController@index']);
+    Route::get('{draft}', ['as' => 'show', 'uses' => 'DraftsController@show']);
     Route::get('create', ['as' => 'create', 'uses' => 'DraftsController@create']);
     Route::post('store', ['as' => 'store', 'uses' => 'DraftsController@store']);
 });

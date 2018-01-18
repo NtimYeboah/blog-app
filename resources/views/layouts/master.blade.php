@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{asset('css/icon.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/landing.css')}}" type="text/css"/>
     <link rel="stylesheet" href="{{asset('css/custom.css')}}" type="text/css"/>
+    @stack('additional_styles')
 
     <!--[if lt IE 9]>
     <script src="{{asset('js/ie/html5shiv.js')}}"></script>
@@ -35,9 +36,6 @@
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <!-- Bootstrap -->
     <script src="{{asset('js/bootstrap.js')}}"></script>
-    <!-- App -->
-    <script src="{{asset('js/app.js')}}"></script>
-    <script src="{{asset('js/app.plugin.js')}}"></script>
     
     <!-- Include any additional scripts specific to the page being viewed -->
     @yield('extra_scripts')
