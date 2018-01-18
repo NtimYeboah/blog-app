@@ -51,19 +51,19 @@ class Draft extends Model
     }
 
     /**
-     * Publish a draft as post
+     * Publish a draft as post.
      *
      * @return bool
      */
     public function publish() : bool
     {
         return self::update([
-            'is_published' => 1
+            'is_published' => 1,
         ]);
     }
 
     /**
-     * Get unpublished drafts
+     * Get unpublished drafts.
      *
      * @param Builder $query
      * @return Builder
@@ -74,7 +74,7 @@ class Draft extends Model
     }
 
     /**
-     * Get published drafts
+     * Get published drafts.
      *
      * @param Builder $query
      * @return Builder

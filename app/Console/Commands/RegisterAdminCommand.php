@@ -84,11 +84,11 @@ class RegisterAdminCommand extends Command
     }
 
     /**
-     * Checks if password is valid
+     * Checks if password is valid.
      *
      * @param string $password
      * @param string $confirmPassword
-     * @return boolean
+     * @return bool
      */
     private function isValidPassword(string $password, string $confirmPassword) : bool
     {
