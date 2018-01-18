@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use App\Draft;
-use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
@@ -16,7 +15,7 @@ class PostsController extends Controller
     public function index()
     {
         $posts = Draft::published()->with('user')->paginate();
-        
+
         return view('posts.index', compact('posts'));
     }
 
@@ -35,7 +34,7 @@ class PostsController extends Controller
             logger()->error('An error occurred whiles publishing a draft', [
                 'file' => $e->getFile(),
                 'code' => $e->getCode(),
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ]);
 
             return back()->withError('Could\'t publish draft. Please try again');
@@ -46,7 +45,7 @@ class PostsController extends Controller
     }
 
     /**
-     * Show a single post
+     * Show a single post.
      *
      * @param Post $post
      * @return void

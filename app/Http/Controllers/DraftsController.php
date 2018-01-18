@@ -15,7 +15,7 @@ class DraftsController extends Controller
     public function index()
     {
         $drafts = Draft::unpublished()->with('user')->paginate();
-    
+
         return view('drafts.index', compact('drafts'));
     }
 
@@ -27,7 +27,7 @@ class DraftsController extends Controller
     public function create()
     {
         $draft = app(Draft::class);
-        
+
         return view('drafts.create', compact('draft'));
     }
 
