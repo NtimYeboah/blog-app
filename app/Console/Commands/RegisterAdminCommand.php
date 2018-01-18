@@ -49,7 +49,7 @@ class RegisterAdminCommand extends Command
     {
         $details = $this->getDetails();
 
-        $admin = $this->user->create($details);
+        $admin = $this->user->saveAdmin($details);
 
         $this->display($admin);
     }
@@ -67,8 +67,7 @@ class RegisterAdminCommand extends Command
         $details['password'] = $this->secret('Password');
         $details['confirm_password'] = $this->secret('Confirm password');
 
-        while (! ($this->isRequiredLength($details['password'])
-        && $this->isMatch($details['password'], $details['confirm_password']))) {
+        while (! $this->isValidPassword($details['password'], $details['confirm_password'])) {
             if (! $this->isRequiredLength($details['password'])) {
                 $this->error('Password must be more that six characters');
             }
@@ -82,6 +81,18 @@ class RegisterAdminCommand extends Command
         }
 
         return $details;
+    }
+
+    /**
+     * Checks if password is valid
+     *
+     * @param string $password
+     * @param string $confirmPassword
+     * @return boolean
+     */
+    private function isValidPassword(string $password, string $confirmPassword) : bool
+    {
+        $this->isRequiredLength($password) && $this->isMatch($password, $confirmPassword);
     }
 
     /**

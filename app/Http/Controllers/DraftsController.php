@@ -14,8 +14,8 @@ class DraftsController extends Controller
      */
     public function index()
     {
-        $drafts = Draft::with('user')->paginate();
-
+        $drafts = Draft::unpublished()->with('user')->paginate();
+    
         return view('drafts.index', compact('drafts'));
     }
 
@@ -27,7 +27,7 @@ class DraftsController extends Controller
     public function create()
     {
         $draft = app(Draft::class);
-
+        
         return view('drafts.create', compact('draft'));
     }
 
@@ -39,7 +39,7 @@ class DraftsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        var_dump($request->all());
     }
 
     /**
@@ -48,9 +48,9 @@ class DraftsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Draft $draft)
     {
-        //
+        return view('drafts.show', compact('draft'));
     }
 
     /**

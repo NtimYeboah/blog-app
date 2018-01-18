@@ -7,7 +7,7 @@ $factory->define(App\Draft::class, function (Faker $faker) {
 
     return [
         'title' => $faker->text,
-        'body' => $faker->paragraph(4),
+        'body' => $faker->paragraph(30),
         'user_id' => $user->id,
     ];
 });

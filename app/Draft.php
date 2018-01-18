@@ -45,8 +45,42 @@ class Draft extends Model
      *
      * @return bool
      */
-    public function isPublished()
+    public function isPublished() : bool
     {
         return (bool) $this->is_published;
+    }
+
+    /**
+     * Publish a draft as post
+     *
+     * @return bool
+     */
+    public function publish() : bool
+    {
+        return self::update([
+            'is_published' => 1
+        ]);
+    }
+
+    /**
+     * Get unpublished drafts
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopeUnpublished($query)
+    {
+        return $query->where('is_published', false);
+    }
+
+    /**
+     * Get published drafts
+     *
+     * @param Builder $query
+     * @return Builder
+     */
+    public function scopePublished($query)
+    {
+        return $query->where('is_published', true);
     }
 }

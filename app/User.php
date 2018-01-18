@@ -89,7 +89,7 @@ class User extends Authenticatable
      * @param array $details
      * @return array
      */
-    public function create(array $details) : self
+    public function saveAdmin(array $details) : self
     {
         $user = new self($details);
 
