@@ -40,27 +40,26 @@ class DraftsController extends Controller
         try {
             $this->validate($request, [
                 'title' => 'required|unique:drafts',
-                'body' => 'required'
+                'body' => 'required',
             ]);
 
-           /*  Draft::create([
-                'title' => $request->get('title'),
-                'body' => $request->get('body'),
-                'user_id' => $request->user()->id
-            ]); */
+            /*  Draft::create([
+                 'title' => $request->get('title'),
+                 'body' => $request->get('body'),
+                 'user_id' => $request->user()->id
+             ]); */
             throw new Exception('Couldn add draft');
-            
         } catch (Exception $e) {
             logger()->error('An error occurred whiles creating a draft', [
                 'message' => $e->getMessage(),
                 'file' => $e->getFile(),
-                'code' => $e->getCode()
+                'code' => $e->getCode(),
             ]);
         }
 
         return response()->json([
-            'message' => 'Draft added successfully', 
-            'status' => 201 
+            'message' => 'Draft added successfully',
+            'status' => 201,
         ]);
     }
 
