@@ -1,30 +1,28 @@
 @extends('layouts.app')
-@section('title', 'All Posts')
+@section('title', 'All Slides')
 @section('content')
-<section class="scrollable padder">
     <div class="row m-t-md m-b-md hidden-print">
         @auth
         <div class="col-xs-10 col-md-10 col-xs-offset-1 col-md-offset-1">
             <div class="col-sm-6">
-                <h3 class="m-b-xs text-black">All Posts</h3>
+                <h3 class="m-b-xs text-black">All Slides</h3>
                 <small>Welcome back, {{ Auth::user()->getFullname() }}</small>
             </div>
         </div>
         @endauth
-        @if (count($posts))
-        @foreach($posts as $post)
+        @if (count($slides))
+        @foreach($slides as $slide)
         <div class="col-xs-10 col-xs-offset-1 col-md-10 col-md-offset-1" style="margin-top:2%">
             <section class="panel panel-default">
                 <div class="panel-body">
                     <div>
                         <h3>
-                        <a href="{{ route('posts.show', ['post' => $post]) }}">{{ $post->title}}</a>
+                        <a href="{{ $slide->url }}" target="_blank" style="text-decoration:underline">{{ $slide->url}}</a>
                         </h3>
                     </div> 
-
                     <div>
-                        {{ $post->body }}
-                    </div>                      
+                        {{ $slide->description }}
+                    </div>                       
                 </div>
             </section>
         </div>
@@ -35,16 +33,11 @@
                 <div class="row wrapper">
                     <p class="m-t-md text-center" style="font-size:18px">
                         <i class="m-b-sm i i-pencil icon fa-4x"></i>
-                        <br/>You have no post yet.<br/>
-                        <a href="{{route('drafts.create')}}"
-                            class="m-t-sm btn btn-primary btn-rounded">
-                            Start by writing a draft
-                        </a>
+                        <br/>Here is empty at the moment<br/>
                     </p>
                 </div>
             </section>
         </div>
         @endif
     </div>
-</section>
 @endsection
