@@ -31,17 +31,17 @@ class Slide extends Model
     }
 
     /**
-     * Add a new slide
+     * Add a new slide.
      *
      * @param [type] $request
      * @return void
      */
     public function add($request)
     {
-        return Slide::create([
+        return self::create([
             'url' => $request->get('url'),
             'description' => $request->get('description'),
-            'user_id' => $request->user()->id
+            'user_id' => $request->user()->id,
         ]);
     }
 }
