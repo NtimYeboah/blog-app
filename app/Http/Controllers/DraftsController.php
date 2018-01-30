@@ -26,9 +26,7 @@ class DraftsController extends Controller
      */
     public function create()
     {
-        $draft = app(Draft::class);
-
-        return view('drafts.create', compact('draft'));
+        return view('drafts.create');
     }
 
     /**
@@ -39,7 +37,31 @@ class DraftsController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request->all());
+        try {
+            $this->validate($request, [
+                'title' => 'required|unique:drafts',
+                'body' => 'required'
+            ]);
+
+           /*  Draft::create([
+                'title' => $request->get('title'),
+                'body' => $request->get('body'),
+                'user_id' => $request->user()->id
+            ]); */
+            throw new Exception('Couldn add draft');
+            
+        } catch (Exception $e) {
+            logger()->error('An error occurred whiles creating a draft', [
+                'message' => $e->getMessage(),
+                'file' => $e->getFile(),
+                'code' => $e->getCode()
+            ]);
+        }
+
+        return response()->json([
+            'message' => 'Draft added successfully', 
+            'status' => 201 
+        ]);
     }
 
     /**

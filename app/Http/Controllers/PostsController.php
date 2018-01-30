@@ -28,8 +28,7 @@ class PostsController extends Controller
     public function store(Draft $draft)
     {
         try {
-            $post = app(Post::class)->add($draft);
-            $post = $post->draft;
+            app(Post::class)->add($draft);
         } catch (\Exception $e) {
             logger()->error('An error occurred whiles publishing a draft', [
                 'file' => $e->getFile(),
@@ -37,11 +36,12 @@ class PostsController extends Controller
                 'message' => $e->getMessage(),
             ]);
 
-            return back()->withError('Could\'t publish draft. Please try again');
+            return back()->withError('Couldn\'t publish draft. Please try again');
         }
 
-        // Flash message
-        return view('posts.show', compact('post'));
+        flash()->success('Draft successfully published');
+
+        return redirect()->route('posts.index');
     }
 
     /**
