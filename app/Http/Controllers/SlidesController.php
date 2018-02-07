@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Slide;
+use Illuminate\Http\Request;
 
 class SlidesController extends Controller
 {
@@ -40,7 +40,7 @@ class SlidesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'url' => 'required|unique:slides|url'
+            'url' => 'required|unique:slides|url',
         ]);
 
         try {
@@ -49,7 +49,7 @@ class SlidesController extends Controller
             logger()->error('An error occurred whiles saving slide', [
                 'file' => $e->getFile(),
                 'code' => $e->getCode(),
-                'message' => $e->getMessage()
+                'message' => $e->getMessage(),
             ]);
 
             return back()->withInput();

@@ -10,6 +10,6 @@ $factory->define(App\About::class, function (Faker $faker) {
         'twitter_url' => $faker->url,
         'linkedin_url' => $faker->url,
         'medium_url' => $faker->url,
-        'cv_url' => $faker->url
+        'cv_url' => $faker->url,
     ];
 });
