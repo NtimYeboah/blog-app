@@ -43,12 +43,11 @@ class DraftsController extends Controller
                 'body' => 'required'
             ]);
 
-           /*  Draft::create([
+            Draft::create([
                 'title' => $request->get('title'),
                 'body' => $request->get('body'),
                 'user_id' => $request->user()->id
-            ]); */
-            throw new Exception('Couldn add draft');
+            ]);
             
         } catch (Exception $e) {
             logger()->error('An error occurred whiles creating a draft', [
@@ -59,9 +58,8 @@ class DraftsController extends Controller
         }
 
         return response()->json([
-            'message' => 'Draft added successfully', 
-            'status' => 201 
-        ]);
+            'message' => 'Draft added successfully' 
+        ], 201);
     }
 
     /**
