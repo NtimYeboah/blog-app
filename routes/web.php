@@ -10,11 +10,29 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', ['uses' => 'PostsController@index']);
+
+Route::get('/auth/login', function () {
+    return view('auth.login');
+});
+
+Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
+    Route::get('', ['as' => 'index', 'uses' => 'PostsController@index']);
+    Route::post('{draft}', ['as' => 'store', 'uses' => 'PostsController@store']);
+    Route::get('{post}', ['as' => 'show', 'uses' => 'PostsController@show']);
+});
+
+Route::group(['prefix' => 'drafts', 'as' => 'drafts.', 'middleware' => ['auth']], function () {
+    Route::get('', ['as' => 'index', 'uses' => 'DraftsController@index']);
+    Route::get('create', ['as' => 'create', 'uses' => 'DraftsController@create']);
+    Route::post('store', ['as' => 'store', 'uses' => 'DraftsController@store']);
+    Route::get('{draft}', ['as' => 'show', 'uses' => 'DraftsController@show']);
+});
+
+Route::group(['prefix' => 'slides', 'as' => 'slides.'], function () {
+    Route::get('', ['as' => 'index', 'uses' => 'SlidesController@index']);
+    Route::get('create', ['as' => 'create', 'uses' => 'SlidesController@create']);
+    Route::post('store', ['as' => 'store', 'uses' => 'SlidesController@store']);
+});
