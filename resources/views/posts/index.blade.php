@@ -1,7 +1,6 @@
 @extends('layouts.app')
 @section('title', 'All Posts')
 @section('content')
-<section class="scrollable padder">
     <div class="row m-t-md m-b-md hidden-print">
         @auth
         <div class="col-xs-10 col-md-10 col-xs-offset-1 col-md-offset-1">
@@ -46,5 +45,4 @@
         </div>
         @endif
     </div>
-</section>
 @endsection

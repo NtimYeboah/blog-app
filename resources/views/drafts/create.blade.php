@@ -19,6 +19,7 @@
             <section class="panel panel-default">
                 <div class="panel-body">
                     <form class="form-horizontal">
+                            {{ csrf_field() }}
                         <div class="form-group">
                             <div class="col-md-12">
                                 <label>Title</label>
@@ -52,10 +53,6 @@
 <script src="{{asset('js/summernote/dist/summernote.min.js')}}"></script>
 <script type="text/javascript">
     (function($) {
-        $(document).ready(function() {
-            $('#summernote').summernote();
-        });
-
         var selectors = {
             titleInput: '#title',
             summernote: '#summernote',
@@ -65,23 +62,35 @@
         var saveDraft = function() {
             var payload = {
                 title: $(selectors.titleInput).val(),
-                body: $(selectors.summernote).code()
+                body: $(selectors.summernote).summernote('code')
             }
-            console.log(payload);
-            /* $.ajax({
-                url: 'store',
+            
+            $.ajax({
+                url: '/drafts/store',
                 data: payload,
-                type: 'POST'
+                type: 'POST',
+                headers: {
+                    'X-CSRF-Token': $('input[name="_token"]').val()
+                },
             })
             .success(function(data) {
-
+                if (data.status === 201) {
+                    location.href = '/posts';
+                }
             })
             .fail(function(error) {
-
-            }); */
+                // Display error message
+            }); 
         }
 
-        $(document.body).on('click', selectors.saveDraftBtn, saveDraft);
+        var eventListeners = function() {
+            $(document.body).on('click', selectors.saveDraftBtn, saveDraft);
+        }
+
+        $(document).ready(function() {
+            $(selectors.summernote).summernote();
+            eventListeners();
+        })
 
     }(window.jQuery));
 </script>

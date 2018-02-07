@@ -73,6 +73,7 @@
           <section id="content">
               <section class="hbox stretch">
                   <section class="vbox">
+                      @include('flash::message')
                       @yield('content')
                   </section>
               </section>
