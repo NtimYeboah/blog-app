@@ -30,3 +30,9 @@ Route::group(['prefix' => 'drafts', 'as' => 'drafts.', 'middleware' => ['auth']]
     Route::post('store', ['as' => 'store', 'uses' => 'DraftsController@store']);
     Route::get('{draft}', ['as' => 'show', 'uses' => 'DraftsController@show']);
 });
+
+Route::group(['prefix' => 'slides', 'as' => 'slides.'], function () {
+    Route::get('', ['as' => 'index', 'uses' => 'SlidesController@index']);
+    Route::get('create', ['as' => 'create', 'uses' => 'SlidesController@create']);
+    Route::post('store', ['as' => 'store', 'uses' => 'SlidesController@store']);
+});

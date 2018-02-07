@@ -35,7 +35,22 @@
                 </a>
               </li>
               @endif
-              <li class="divider"></li>         
+              <li class="divider"></li> 
+              @if (! Route::is('slides.index'))  
+              <li>
+                <a href="{{ route('slides.index') }}">
+                  <span class="hidden-nav-xs">All slides</span>
+                </a>
+              </li>
+              @endif
+              @if (! Route::is('slides.create'))
+              <li>
+                <a href="{{ route('slides.create') }}">
+                  <span class="hidden-nav-xs">Create slides</span>
+                </a>
+              </li>
+              @endif 
+              <li class="divider"></li>       
               <li>
                 <span class="arrow top"></span>
                 <a href="{{ route('logout') }}"
@@ -58,7 +73,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="{{route('slides.index')}}">
             <span class="hidden-nav-xs nav-item-text">Slides</span>
           </a>
         </li>
