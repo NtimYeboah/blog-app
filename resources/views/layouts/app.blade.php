@@ -36,6 +36,14 @@
               </li>
               @endif
               <li class="divider"></li>         
+              @if (! Route::is('about.create'))
+              <li>
+                <a href="{{ route('about.create') }}">
+                  <span class="hidden-nav-xs">Write About</span>
+                </a>
+              </li>
+              @endif
+              <li class="divider"></li>         
               <li>
                 <span class="arrow top"></span>
                 <a href="{{ route('logout') }}"
@@ -63,7 +71,7 @@
           </a>
         </li>
         <li>
-          <a href="#">
+          <a href="{{route('about.index')}}">
             <span class="hidden-nav-xs nav-item-text">About</span>
           </a>
         </li>
