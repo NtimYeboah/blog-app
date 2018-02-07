@@ -26,9 +26,15 @@ Route::group(['prefix' => 'posts', 'as' => 'posts.'], function () {
 
 Route::group(['prefix' => 'drafts', 'as' => 'drafts.', 'middleware' => ['auth']], function () {
     Route::get('', ['as' => 'index', 'uses' => 'DraftsController@index']);
-    Route::get('{draft}', ['as' => 'show', 'uses' => 'DraftsController@show']);
     Route::get('create', ['as' => 'create', 'uses' => 'DraftsController@create']);
     Route::post('store', ['as' => 'store', 'uses' => 'DraftsController@store']);
+    Route::get('{draft}', ['as' => 'show', 'uses' => 'DraftsController@show']);
+});
+
+Route::group(['prefix' => 'slides', 'as' => 'slides.'], function () {
+    Route::get('', ['as' => 'index', 'uses' => 'SlidesController@index']);
+    Route::get('create', ['as' => 'create', 'uses' => 'SlidesController@create']);
+    Route::post('store', ['as' => 'store', 'uses' => 'SlidesController@store']);
 });
 
 Route::group(['prefix' => 'about', 'as' => 'about.'], function () {

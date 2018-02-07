@@ -29,4 +29,19 @@ class Slide extends Model
     {
         return $this->is_published;
     }
+
+    /**
+     * Add a new slide
+     *
+     * @param [type] $request
+     * @return void
+     */
+    public function add($request)
+    {
+        return Slide::create([
+            'url' => $request->get('url'),
+            'description' => $request->get('description'),
+            'user_id' => $request->user()->id
+        ]);
+    }
 }

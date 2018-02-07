@@ -31,7 +31,7 @@
 </head>
 <body>
     <!-- Include the main page content -->
-    @yield('content_wrapper')
+        @yield('content_wrapper')
 
     <script src="{{asset('js/jquery.min.js')}}"></script>
     <!-- Bootstrap -->

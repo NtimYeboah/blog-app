@@ -2,31 +2,33 @@
 
 namespace App\Http\Controllers;
 
-use App\Draft;
 use Illuminate\Http\Request;
+use App\Slide;
 
-class DraftsController extends Controller
+class SlidesController extends Controller
 {
     /**
-     * Display a listing of drafts.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $drafts = Draft::unpublished()->with('user')->paginate();
+        $slides = Slide::paginate();
 
-        return view('drafts.index', compact('drafts'));
+        return view('slides.index', compact('slides'));
     }
 
     /**
-     * Show the form for creating a new draft.
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('drafts.create');
+        $slide = app(Slide::class);
+
+        return view('slides.create', compact('slide'));
     }
 
     /**
@@ -37,28 +39,25 @@ class DraftsController extends Controller
      */
     public function store(Request $request)
     {
-        try {
-            $this->validate($request, [
-                'title' => 'required|unique:drafts',
-                'body' => 'required',
-            ]);
+        $this->validate($request, [
+            'url' => 'required|unique:slides|url'
+        ]);
 
-            Draft::create([
-                'title' => $request->get('title'),
-                'body' => $request->get('body'),
-                'user_id' => $request->user()->id,
-            ]);
+        try {
+            app(Slide::class)->add($request);
         } catch (Exception $e) {
-            logger()->error('An error occurred whiles creating a draft', [
-                'message' => $e->getMessage(),
+            logger()->error('An error occurred whiles saving slide', [
                 'file' => $e->getFile(),
                 'code' => $e->getCode(),
+                'message' => $e->getMessage()
             ]);
+
+            return back()->withInput();
         }
 
-        return response()->json([
-            'message' => 'Draft added successfully',
-        ], 201);
+        flash()->success('Slide successfully added');
+
+        return redirect()->route('slides.index');
     }
 
     /**
@@ -67,9 +66,9 @@ class DraftsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Draft $draft)
+    public function show($id)
     {
-        return view('drafts.show', compact('draft'));
+        //
     }
 
     /**

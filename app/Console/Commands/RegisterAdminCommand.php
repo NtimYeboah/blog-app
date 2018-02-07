@@ -92,7 +92,7 @@ class RegisterAdminCommand extends Command
      */
     private function isValidPassword(string $password, string $confirmPassword) : bool
     {
-        $this->isRequiredLength($password) && $this->isMatch($password, $confirmPassword);
+        return $this->isRequiredLength($password) && $this->isMatch($password, $confirmPassword);
     }
 
     /**
