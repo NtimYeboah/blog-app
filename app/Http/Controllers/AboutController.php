@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\About;
+use Illuminate\Http\Request;
 
 class AboutController extends Controller
 {
@@ -16,6 +16,7 @@ class AboutController extends Controller
     {
         $about = About::first();
         dd($about);
+
         return view('about.index', compact('about'));
     }
 
@@ -46,9 +47,9 @@ class AboutController extends Controller
             'twitter_url' => 'sometimes|url',
             'linkedin_url' => 'sometimes|url',
             'medium_url' => 'sometimes|url',
-            'cv_url' => 'sometimes|url'
+            'cv_url' => 'sometimes|url',
         ]);
-            
+
         try {
             About::create($request);
         } catch (Exception $e) {
@@ -56,7 +57,7 @@ class AboutController extends Controller
             Please try again', [
                 'file' => $e->getFile(),
                 'message' => $e->getMessage(),
-                'code' => $e->getCode()
+                'code' => $e->getCode(),
             ]);
 
             return back()->withInput();
