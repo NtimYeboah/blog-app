@@ -28,4 +28,8 @@ Personal blogging app in PHP
 
 ## Run artisan command
 
-`$ php artisan register:admin`
+`php artisan register:admin`
+
+## View in browser
+
+`php artisan serve`
