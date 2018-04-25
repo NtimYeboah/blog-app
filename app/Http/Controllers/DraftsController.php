@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Draft;
 use Illuminate\Http\Request;
+use App\Http\Requests\DraftRequest;
 
 class DraftsController extends Controller
 {
@@ -32,16 +33,16 @@ class DraftsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Request\DraftRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DraftRequest $request)
     {
         try {
-            $this->validate($request, [
+            /* $this->validate($request, [
                 'title' => 'required|unique:drafts',
                 'body' => 'required',
-            ]);
+            ]); */
 
             Draft::create([
                 'title' => $request->get('title'),

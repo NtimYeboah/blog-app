@@ -79,6 +79,8 @@
                 }
             })
             .fail(function(error) {
+                console.log('Error on failed validation request', error);
+                console.log('error.responseJSON', error.responseJSON);
                 // Display error message
             }); 
         }
