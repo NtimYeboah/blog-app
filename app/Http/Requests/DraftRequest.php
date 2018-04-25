@@ -25,7 +25,7 @@ class DraftRequest extends FormRequest
     {
         return [
             'title' => 'required|unique:drafts',
-            'body' => 'required'
+            'body' => 'required',
         ];
     }
 }
